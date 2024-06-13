@@ -49,8 +49,7 @@ func main() {
 }
 ```
 
-Ответ:
-```
+Answer:
+
 First it will print values from 'a' and 'b' with a random delay, and then it's gonna infinitely print zeroes, 
 becuase reads from closed channels return their zero values.
-```

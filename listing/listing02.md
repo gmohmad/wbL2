@@ -33,12 +33,13 @@ func main() {
 }
 ```
 
-Ответ:
-```
+Answer:
+
 It will print 
+```
 2
 1
+```
 Because the functions in defer statement are called right before returning from the function they were called in, even
 if it panics. Deferred functions execute in LIFO(last in, first out) order. The arguments passed to deferred function are 
 evaluated when the function is deferred, not when it executes.
-```
