@@ -1,4 +1,4 @@
-Что выведет программа? Объяснить вывод программы.
+What will this program output? Explain the output of this program.
 
 ```go
 package main
@@ -51,6 +51,6 @@ func main() {
 
 Ответ:
 ```
-...
-
+First it will print values from 'a' and 'b' with a random delay, and then it's gonna infinitely print zeroes, 
+becuase reads from closed channels return their zero values.
 ```

@@ -1,4 +1,4 @@
-Что выведет программа? Объяснить вывод программы.
+What will this program output? Explain the output of this program
 
 ```go
 package main
@@ -31,6 +31,7 @@ func main() {
 
 Ответ:
 ```
-...
+It will print 'error', because in 'test' function we return value of type '*customError', and in main function we assing 
+result of 'test' to err, so err != nil is true, because only the value of err is nil, but the type is *customError.
 
 ```
