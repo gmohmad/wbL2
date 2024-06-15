@@ -49,14 +49,7 @@ func main() {
 
 		// process commands
 		commands := strings.Split(input, "|")
-		// if commands are piped, call handlePipes function
-		if len(commands) > 1 {
-			if err := handlePipes(commands); err != nil {
-				fmt.Println("Error handling pipes:", err)
-			}
-			continue
-		}
-		// else run the command
+
 		args := strings.Fields(commands[0])
 		if len(args) == 0 {
 			continue
@@ -77,54 +70,6 @@ func main() {
 			executeCommand(args)
 		}
 	}
-}
-
-// handlePipes processes commands connected by pipes
-func handlePipes(commands []string) error {
-	// lastOutput is needed to set the output of the command to the next one
-	var lastOutput *os.File
-
-	for i, command := range commands {
-		args := strings.Fields(command)
-		cmd := exec.Command(args[0], args[1:]...)
-
-		// if it's not the first command, set the input of the command to lastOutput
-		if i > 0 {
-			cmd.Stdin = lastOutput
-		}
-
-		// if it's not the last command, create a new pipe and set hte outputs
-		if i < len(commands)-1 {
-			r, w, err := os.Pipe()
-			if err != nil {
-				return fmt.Errorf("error creating pipe: %v", err)
-			}
-			cmd.Stdout = w
-			lastOutput = r
-			defer w.Close()
-		} else {
-			// if it is the last command, the set the stdout to the os.stdout
-			cmd.Stdout = os.Stdout
-		}
-
-		// set command's stderr to os.stderr
-		cmd.Stderr = os.Stderr
-
-		// start the command
-		if err := cmd.Start(); err != nil {
-			return fmt.Errorf("error starting command: %v", err)
-		}
-
-		// close the output
-		if i > 0 {
-			lastOutput.Close()
-		}
-		// wait for the command
-		if err := cmd.Wait(); err != nil {
-			return fmt.Errorf("error waiting for command: %v", err)
-		}
-	}
-	return nil
 }
 
 // changeDirectory handles the cd command

@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"log"
+	"time"
 	"net/http"
 )
 
@@ -36,4 +37,20 @@ func CheckContentType(w http.ResponseWriter, r *http.Request) {
 		log.Println("invalid Content-Type")
 		http.Error(w, "invalid Content-Type", http.StatusBadRequest)
 	}
+}
+
+func ValidateDate(w http.ResponseWriter, qDate string) (*time.Time, error) {
+	var date time.Time
+	var err error
+
+	if qDate == "" {
+		date = time.Now()
+	} else {
+		date, err = time.Parse("2006-01-02", qDate)
+		if err != nil {
+			Error(w, "invalid data: error parsing the date", http.StatusBadRequest)
+			return nil, err
+		}
+	}
+	return &date, nil
 }

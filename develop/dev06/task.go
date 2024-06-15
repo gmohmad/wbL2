@@ -76,7 +76,7 @@ func main() {
 	flag.Parse()
 	args := flag.Args()
 	if len(args) < 1 {
-		fmt.Println("Please provide a file to read from")
+		fmt.Println("Provide a file to read from")
 		os.Exit(1)
 	}
 	src := args[0]

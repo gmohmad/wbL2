@@ -79,6 +79,7 @@ func (c *CalendarHandler) UpdateEvent(w http.ResponseWriter, r *http.Request) {
 	err = c.calendar.UpdateEvent(id, eventData)
 	if err != nil {
 		utils.Error(w, err.Error(), http.StatusNotFound)
+		return
 	}
 
 	utils.OKMessage(w, "event successfully updated")
@@ -104,6 +105,7 @@ func (c *CalendarHandler) DeleteEvent(w http.ResponseWriter, r *http.Request) {
 	err = c.calendar.DeleteEvent(id)
 	if err != nil {
 		utils.Error(w, err.Error(), http.StatusNotFound)
+		return
 	}
 
 	utils.OKMessage(w, "event successfully deleted")
@@ -113,20 +115,12 @@ func (c *CalendarHandler) EventsForDay(w http.ResponseWriter, r *http.Request) {
 	utils.CheckMehod("GET", w, r)
 
 	qDate := r.URL.Query().Get("date")
-	var date time.Time
-	var err error
 
-	if qDate == "" {
-		date = time.Now()
-	} else {
-		date, err = time.Parse("2006-01-02", qDate)
-		if err != nil {
-			utils.Error(w, "invalid data: error parsing the date", http.StatusBadRequest)
-			return
-		}
+	validDate, err := utils.ValidateDate(w, qDate)
+	if err != nil {
+		return 
 	}
-
-	data, err := json.Marshal(ResponseEvents{c.calendar.EventsForDay(date)})
+	data, err := json.Marshal(ResponseEvents{c.calendar.EventsForDay(*validDate)})
 
 	if err != nil {
 		utils.Error(w, "error marshalling events", http.StatusInternalServerError)
@@ -134,27 +128,19 @@ func (c *CalendarHandler) EventsForDay(w http.ResponseWriter, r *http.Request) {
 	}
 
 	utils.OKData(w, data)
-	log.Println("sent events for day")
+	log.Println("successfully sent events for day")
 }
 
 func (c *CalendarHandler) EventsForWeek(w http.ResponseWriter, r *http.Request) {
 	utils.CheckMehod("GET", w, r)
 
 	qDate := r.URL.Query().Get("date")
-	var date time.Time
-	var err error
 
-	if qDate == "" {
-		date = time.Now()
-	} else {
-		date, err = time.Parse("2006-01-02", qDate)
-		if err != nil {
-			utils.Error(w, "invalid data: error parsing the date", http.StatusBadRequest)
-			return
-		}
+	validDate, err := utils.ValidateDate(w, qDate)
+	if err != nil {
+		return
 	}
-
-	data, err := json.Marshal(ResponseEvents{c.calendar.EventsForWeek(date)})
+	data, err := json.Marshal(ResponseEvents{c.calendar.EventsForWeek(*validDate)})
 
 	if err != nil {
 		utils.Error(w, "error marshalling events", http.StatusInternalServerError)
@@ -162,27 +148,19 @@ func (c *CalendarHandler) EventsForWeek(w http.ResponseWriter, r *http.Request) 
 	}
 
 	utils.OKData(w, data)
-	log.Println("sent events for day")
+	log.Println("successfully sent events for day")
 }
 
 func (c *CalendarHandler) EventsForMonth(w http.ResponseWriter, r *http.Request) {
 	utils.CheckMehod("GET", w, r)
 
 	qDate := r.URL.Query().Get("date")
-	var date time.Time
-	var err error
 
-	if qDate == "" {
-		date = time.Now()
-	} else {
-		date, err = time.Parse("2006-01-02", qDate)
-		if err != nil {
-			utils.Error(w, "invalid data: error parsing the date", http.StatusBadRequest)
-			return
-		}
+	validDate, err := utils.ValidateDate(w, qDate)
+	if err != nil {
+		return
 	}
-
-	data, err := json.Marshal(ResponseEvents{c.calendar.EventsForMonth(date)})
+	data, err := json.Marshal(ResponseEvents{c.calendar.EventsForMonth(*validDate)})
 
 	if err != nil {
 		utils.Error(w, "error marshalling events", http.StatusInternalServerError)
@@ -190,5 +168,5 @@ func (c *CalendarHandler) EventsForMonth(w http.ResponseWriter, r *http.Request)
 	}
 
 	utils.OKData(w, data)
-	log.Println("sent events for day")
+	log.Println("successfully sent events for day")
 }
