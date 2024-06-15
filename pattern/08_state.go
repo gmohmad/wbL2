@@ -3,7 +3,7 @@ package pattern
 import "fmt"
 
 /*
-State pattern is a behavioral pattern that allows an object to alter its behavior when its internal state changes. 
+State pattern is a behavioral pattern that allows an object to alter its behavior when its internal state changes.
 The object will appear to change its class.
 
 Pros:

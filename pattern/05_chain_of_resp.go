@@ -3,7 +3,7 @@ package pattern
 import "fmt"
 
 /*
-Chain of Responsibility pattern is a behavioral pattern that allows passing requests along a chain of handlers. 
+Chain of Responsibility pattern is a behavioral pattern that allows passing requests along a chain of handlers.
 When receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain.
 
 Pros:

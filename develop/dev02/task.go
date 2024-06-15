@@ -26,42 +26,47 @@ The function must pass all tests. The code must pass go vet and golint checks.
 */
 
 func unpackString(s string) (string, error) {
+	s += "!" // ! to the string so the last character of the string would be properly handled
 	var result strings.Builder
-	runes := []rune(s)
+	var currChar rune
+
+	currNum := []rune{}
 	escaped := false
 
-	for i := 0; i < len(runes); i++ {
-		char := runes[i]
-
-		// Handle escape sequence
+	for i, char := range s {
+		// Handle escape character
 		if char == '\\' && !escaped {
-			if i+1 < len(runes) && (runes[i+1] == '\\' || unicode.IsDigit(runes[i+1])) {
-				escaped = true
-				continue
-			} else {
-				return "", errors.New("invalid string")
-			}
+			escaped = true
+			continue
 		}
 
+		// Handle numbers
 		if unicode.IsDigit(char) && !escaped {
-			// Invalid string if the string starts with a digit
+			// If the first character of the string is a number, it's invalid
 			if i == 0 {
 				return "", errors.New("invalid string")
 			}
-			// Get the previous character to repeat
-			prevChar := runes[i-1]
-			count, err := strconv.Atoi(string(char))
+			currNum = append(currNum, char)
+			continue
+		}
+		// Handle other characters
+
+		var num int = 1
+		var err error
+
+		if len(currNum) > 0 {
+			num, err = strconv.Atoi(string(currNum))
 			if err != nil {
 				return "", err
 			}
-			// Append prevChar count-1 times because it is already appended once
-			result.WriteString(strings.Repeat(string(prevChar), count-1))
-		} else {
-			// Append the character to the result
-			result.WriteRune(char)
 		}
+		result.WriteString(strings.Repeat(string(currChar), num))
+
+		currChar = char
+		currNum = []rune{}
 		escaped = false
 	}
 
-	return result.String(), nil
+	// Return result[1:] because on the first iteration we add '0' rune to result
+	return result.String()[1:], nil
 }

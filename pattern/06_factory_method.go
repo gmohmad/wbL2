@@ -3,7 +3,7 @@ package pattern
 import "fmt"
 
 /*
-Factory Method pattern is a creational pattern that provides an interface for creating objects in a superclass, and 
+Factory Method pattern is a creational pattern that provides an interface for creating objects in a superclass, and
 allows subclasses to alter the type of objects that will be created.
 
 Pros:

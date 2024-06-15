@@ -3,7 +3,7 @@ package pattern
 import "fmt"
 
 /*
-Visitor pattern is a behavioral pattern that allows adding further operations to objects without modifying them. 
+Visitor pattern is a behavioral pattern that allows adding further operations to objects without modifying them.
 It lets you define a new operation without changing the classes of the elements on which it operates.
 
 Pros:

@@ -38,7 +38,6 @@ start := time.Now()
 fmt.Printf(“fone after %v”, time.Since(start))
 */
 
-
 // or function takes multiple channels as input and returns a single channel that closes when any of the input channels close.
 func or(channels ...<-chan interface{}) <-chan interface{} {
 	// Handle edge cases where no channels or only one channel is provided
@@ -78,7 +77,7 @@ func or(channels ...<-chan interface{}) <-chan interface{} {
 func sig(after time.Duration) <-chan interface{} {
 	c := make(chan interface{})
 	go func() {
-		defer close(c) // Ensure the channel is closed when the goroutine exits
+		defer close(c)    // Ensure the channel is closed when the goroutine exits
 		time.Sleep(after) // Sleep for the specified duration
 	}()
 	return c

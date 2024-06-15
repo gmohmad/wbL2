@@ -22,7 +22,7 @@ The program must pass all tests. The code must pass go vet and golint checks.
 */
 
 var (
-	fieldFlag    = flag.String("f", "0", "which columns to print")
+	fieldFlag     = flag.String("f", "0", "which columns to print")
 	delimiterFlag = flag.String("d", "\t", "delimiter for splitting lines")
 	separatedFlag = flag.Bool("s", false, "show only lines with delimiter")
 )

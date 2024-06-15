@@ -1,13 +1,13 @@
 package main
 
 import (
+	"errors"
 	"flag"
 	"fmt"
 	"os"
 	"sort"
 	"strconv"
 	"strings"
-	"errors"
 )
 
 /*
@@ -40,7 +40,6 @@ var numerically = flag.Bool("n", false, "Sort numerically")
 var unique = flag.Bool("u", false, "Dont print duplicates")
 var column = flag.Int("k", 0, "Order by specified column")
 
-
 func removeDuplicateStr(strSlice []string) []string {
 	allKeys := make(map[string]bool)
 	list := make([]string, 0)
@@ -59,7 +58,7 @@ func Sort(data []byte, r, n, u bool, k int) (string, error) {
 	var result string
 
 	// unique flag was set
-	if u { 
+	if u {
 		rows = removeDuplicateStr(rows)
 	}
 
@@ -99,7 +98,7 @@ func Sort(data []byte, r, n, u bool, k int) (string, error) {
 			}
 			if r {
 				return rowsOfSlices[i][k] > rowsOfSlices[j][k]
-			} 
+			}
 
 			return rowsOfSlices[i][k] < rowsOfSlices[j][k]
 		}

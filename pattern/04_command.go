@@ -3,7 +3,7 @@ package pattern
 import "fmt"
 
 /*
-Command pattern is a behavioral pattern that turns a request into a standalone object that contains all information 
+Command pattern is a behavioral pattern that turns a request into a standalone object that contains all information
 about the request.
 
 Pros:

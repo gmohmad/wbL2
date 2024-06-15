@@ -5,11 +5,11 @@ import (
 )
 
 type testCut struct {
-	f, d           string
-	s              bool
-	data           string
-	expectedStr    string
-	expectedErr    error
+	f, d        string
+	s           bool
+	data        string
+	expectedStr string
+	expectedErr error
 }
 
 var testCuts = []testCut{

@@ -4,7 +4,7 @@ import "fmt"
 
 /*
 Builder pattern is a creational pattern that allows you to construct complex objects step by step.
-It separates the construction of a complex object from its representation, allowing the same construction process 
+It separates the construction of a complex object from its representation, allowing the same construction process
 to create different representations.
 
 Pros:

@@ -20,6 +20,7 @@ func TestUnpackString(t *testing.T) {
 		{"qwe\\4\\5", "qwe45", nil},
 		{"qwe\\45", "qwe44444", nil},
 		{"qwe\\\\5", "qwe\\\\\\\\\\", nil},
+		{"qwe11", "qweeeeeeeeeee", nil},
 	}
 
 	for _, test := range testCases {

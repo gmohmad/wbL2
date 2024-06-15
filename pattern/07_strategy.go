@@ -3,7 +3,7 @@ package pattern
 import "fmt"
 
 /*
-Strategy pattern is a behavioral pattern that enables selecting an algorithm's behavior at runtime. 
+Strategy pattern is a behavioral pattern that enables selecting an algorithm's behavior at runtime.
 It defines a family of algorithms, encapsulates each one, and makes them interchangeable.
 
 Pros:

@@ -15,7 +15,7 @@ Cons:
 
 // Example
 
-// Define 'AudioPlayer' struct 
+// Define 'AudioPlayer' struct
 type AudioPlayer struct{}
 
 // Define 'PlayAudio' method on 'AudioPlayer'
@@ -23,7 +23,7 @@ func (a *AudioPlayer) PlayAudio() {
 	fmt.Println("playing audio...")
 }
 
-// Define 'VideoPlayer' struct 
+// Define 'VideoPlayer' struct
 type VideoPlayer struct{}
 
 // Define 'PlayVideo' method on 'VideoPlayer'
@@ -31,7 +31,7 @@ func (v *VideoPlayer) PlayVideo() {
 	fmt.Println("playing video...")
 }
 
-// Define 'ScreeManager' struct 
+// Define 'ScreeManager' struct
 type ScreeManager struct{}
 
 // Define 'ShowScreen' method on 'ScreeManager'
@@ -55,7 +55,7 @@ func NewMultimediaFacade() *MultimediaFacade {
 	}
 }
 
-// 'PlayMovie' method on 'MultimediaFacade' internally calls 'PlayAudio', 'PlayVideo' and 'ShowScreen' methods 
+// 'PlayMovie' method on 'MultimediaFacade' internally calls 'PlayAudio', 'PlayVideo' and 'ShowScreen' methods
 // providing a simplified interface ot 'AudioPlayer', 'videoPlayer' and 'ShowScreen' structs
 func (m *MultimediaFacade) PlayMovie() {
 	m.audioPlayer.PlayAudio()

@@ -11,13 +11,16 @@ import (
 
 // A specifies the amount of lines to print after match
 var A = flag.Int("A", 0, "print N lines after match")
+
 // B specifies the amount of lines to print before match
 var B = flag.Int("B", 0, "print N lines before match")
+
 // C specifies the amount of lines to print around match
 var C = flag.Int("C", 0, "print +- N around match")
 var c = flag.Bool("c", false, "print number of matches")
 var i = flag.Bool("i", false, "ignore case")
 var v = flag.Bool("v", false, "invert search")
+
 // F specifies the exact non-pattern match
 var F = flag.Bool("F", false, "exact non-pattern match")
 var n = flag.Bool("n", false, "print line index")
