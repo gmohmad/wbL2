@@ -131,5 +131,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Print(MySort(data, r, n, u, k))
+	fmt.Print(Sort(data, r, n, u, k))
 }
